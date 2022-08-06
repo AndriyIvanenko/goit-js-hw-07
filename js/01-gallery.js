@@ -1,5 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
+
 const gallery = document.querySelector(".gallery");
 let galleryMarkup = "";
 
@@ -15,11 +16,9 @@ galleryItems.forEach((galleryItem) => {
   </a>
 </div>`;
 });
-
 gallery.insertAdjacentHTML("afterbegin", galleryMarkup);
 
 gallery.addEventListener("click", onImageClick);
-
 function onImageClick(event) {
   event.preventDefault();
 
@@ -33,10 +32,18 @@ function onImageClick(event) {
 `);
   instance.show();
 
-  window.addEventListener("keydown", onEscPress);
+  document.addEventListener("keydown", onEscPress);
   function onEscPress(event) {
     if (event.code === "Escape") {
       instance.close();
+      //   console.log("onEscPress");
+      document.removeEventListener("keydown", onEscPress);
     }
+  }
+
+  const lightboxGallery = document.querySelector(".basicLightbox");
+  lightboxGallery.addEventListener("click", onGalleryClick);
+  function onGalleryClick(event) {
+    document.removeEventListener("keydown", onEscPress);
   }
 }
