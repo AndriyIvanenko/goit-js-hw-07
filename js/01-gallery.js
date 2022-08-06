@@ -36,12 +36,14 @@ function onImageClick(event) {
   function onEscPress(event) {
     if (event.code === "Escape") {
       instance.close();
-      //   console.log("onEscPress");
+      console.log("onEscPress");
       document.removeEventListener("keydown", onEscPress);
     }
   }
 
-  const lightboxGallery = document.querySelector(".basicLightbox");
+  const lightboxGalleryClass = instance.element().classList[0];
+  //   console.log(instanceClass);
+  const lightboxGallery = document.querySelector(`.${lightboxGalleryClass}`);
   lightboxGallery.addEventListener("click", onGalleryClick);
   function onGalleryClick(event) {
     document.removeEventListener("keydown", onEscPress);
